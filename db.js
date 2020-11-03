@@ -1,7 +1,6 @@
 const { Sequelize } = require('sequelize');
 
 const RoleModel = require('./models/role');
-const user = require('./models/user');
 const UserModel = require('./models/user')
 
 // conexion db
