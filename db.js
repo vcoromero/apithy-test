@@ -14,12 +14,12 @@ const User = UserModel(sequelize, Sequelize);
 User.belongsTo(Role);
 
 
-sequelize.sync( {force: false}). then(
+/*sequelize.sync( {force: false}). then(
   ()=>{
     console.log('tablas syncs')
   }
 )
-/*try {
+try {
   sequelize.authenticate();
   console.log('La conexion a la bd ha sido exitosa');
   

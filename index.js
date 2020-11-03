@@ -5,5 +5,5 @@ const port = 3800;
 const db = require("./db");
 
 app.listen(port, () => {
-      console.log("Servidor corriendo en http://localhost:" + port);
-    });
+  console.log("Servidor corriendo en http://localhost:" + port);
+});

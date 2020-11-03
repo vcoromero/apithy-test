@@ -10,7 +10,7 @@ function home(request, response) {
 }
 
 
-async function getUsers(req, res){
+async function getUsers(req, res) {
   const page = req.params.page ? req.params.page : 1
   const options = {
     include: Role,
@@ -18,23 +18,28 @@ async function getUsers(req, res){
     paginate: 50,
   }
   const { docs, pages, total } = await User.paginate(options)
-  res.status(200).send({users: docs, actual_page: Number(page), total_pages: pages, total_users: total})
+  res.status(200).send({ users: docs, actual_page: Number(page), total_pages: pages, total_users: total })
 }
 
 
-async function getUser(req, res){
+async function getUser(req, res) {
   const user_id = req.params.id;
-  
+
   const users = await User.findAll({
     include: Role,
-    where:{
+    where: {
       id: user_id
     }
   })
   res.status(200).send(users)
 }
+
+function importFromExcel(req, res) { }
+
+
 module.exports = {
   home,
   getUsers,
-  getUser
+  getUser,
+  importFromExcel
 };
