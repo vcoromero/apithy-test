@@ -2,6 +2,8 @@ const { User } = require('../db');
 const { Role } = require('../db');
 
 
+
+
 //metodos de prueba
 function home(request, response) {
   response
@@ -34,7 +36,9 @@ async function getUser(req, res) {
   res.status(200).send(users)
 }
 
-function importFromExcel(req, res) { }
+function importFromExcel(req, res) { 
+  console.log(req.files)
+}
 
 
 module.exports = {
