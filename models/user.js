@@ -8,8 +8,7 @@ module.exports = (sequelize, type) =>{
             autoIncrement: true
         },
         name: type.STRING(50),
-        email: type.STRING(50),
-        fk_role_id: type.INTEGER
+        email: type.STRING(50)
     }, {
   timestamps: false
 })

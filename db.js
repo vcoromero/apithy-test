@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize');
 
-const RoleModel = require('./models/role')
+const RoleModel = require('./models/role');
+const user = require('./models/user');
 const UserModel = require('./models/user')
 
 // conexion db
@@ -11,6 +12,7 @@ const sequelize = new Sequelize('apithy', 'root', '', {
 
 const Role = RoleModel(sequelize, Sequelize);
 const User = UserModel(sequelize, Sequelize);
+User.belongsTo(Role);
 
 
 sequelize.sync( {force: false}). then(

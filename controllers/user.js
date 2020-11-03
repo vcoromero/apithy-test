@@ -1,4 +1,6 @@
 const { User } = require('../db');
+const { Role } = require('../db');
+
 
 //metodos de prueba
 function home(request, response) {
@@ -11,18 +13,20 @@ function home(request, response) {
 async function getUsers(req, res){
   const page = req.params.page ? req.params.page : 1
   const options = {
-  page: req.params.page ? req.params.page : 1,
-  paginate: 50,
- }
- const { docs, pages, total } = await User.paginate(options)
-  res.status(200).send({users: docs, page, pages, total})
+    include: Role,
+    page: req.params.page ? req.params.page : 1,
+    paginate: 50,
+  }
+  const { docs, pages, total } = await User.paginate(options)
+  res.status(200).send({users: docs, actual_page: Number(page), total_pages: pages, total_users: total})
 }
 
 
 async function getUser(req, res){
   const user_id = req.params.id;
   
-  const users = await User.findAndCountAll({
+  const users = await User.findAll({
+    include: Role,
     where:{
       id: user_id
     }
