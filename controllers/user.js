@@ -1,8 +1,7 @@
 const { User } = require('../db');
 const { Role } = require('../db');
-
-
-
+const XLSX = require('xlsx');
+const { check, validationResult } = require('express-validator/check');
 
 //metodos de prueba
 function home(request, response) {
@@ -36,8 +35,21 @@ async function getUser(req, res) {
   res.status(200).send(users)
 }
 
-function importFromExcel(req, res) { 
-  console.log(req.files)
+function importFromExcel(req, res) {
+  if (req.files) {
+    const file_path = req.files.excel.path;
+    const workbook = XLSX.readFile(file_path);
+    const sheet = workbook.SheetNames[0];
+    const dataExcel = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
+    
+    for(const item of dataExcel){
+      
+      /*console.log(item.code)
+      item.name
+      item.email
+      */
+    }
+  }
 }
 
 
