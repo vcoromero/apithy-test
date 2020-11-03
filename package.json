@@ -1,0 +1,28 @@
+{
+  "name": "apithy-test",
+  "version": "1.0.0",
+  "description": "Repositorio para subir el proyecto test de Apithy.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vcoromero/apithy-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vcoromero/apithy-test/issues"
+  },
+  "homepage": "https://github.com/vcoromero/apithy-test#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
