@@ -1,6 +1,6 @@
 const express = require("express");
 const UserController = require("../controllers/user");
 
-var api = express.Router();
-api.get("/home", UserController.home);
+const api = express.Router();
+api.get("/user", UserController.home);
 module.exports = api;

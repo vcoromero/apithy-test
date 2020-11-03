@@ -3,7 +3,9 @@ const bodyParser = require("body-parser");
 const app = express();
 
 //cargar rutas
-var user_routes = require("./routes/user");
+const user_routes = require("./routes/user");
+const role_routes = require("./routes/role");
+
 
 //middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,6 +26,7 @@ app.use((request, response, next) => {
 
 //rutas
 app.use("/api", user_routes);
+app.use("/api", role_routes);
 
 //exportar
 module.exports = app;
