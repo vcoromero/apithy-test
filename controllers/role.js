@@ -1,5 +1,4 @@
-//const Role = require("../models/role");
-
+const { Role } = require('../db');
 //metodos de prueba
 function home(request, response) {
   response
@@ -7,6 +6,12 @@ function home(request, response) {
     .send({ message: "Api de role" });
 }
 
+async function getRoles(req, res){
+  const roles = await Role.findAll()
+  res.status(200).send(roles)
+}
+
 module.exports = {
-  home
+  home,
+  getRoles
 };
