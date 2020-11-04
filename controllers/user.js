@@ -58,7 +58,7 @@ async function importFromExcel(req, res) {
         validador.role =
         {
           value: item.code,
-          validatios: ''
+          validation: ''
         }
 
       }
@@ -69,7 +69,7 @@ async function importFromExcel(req, res) {
         validador.name =
         {
           value: item.name,
-          validatios: ''
+          validation: ''
         }
       }
       const exist_email = await User.findAll({
@@ -84,14 +84,15 @@ async function importFromExcel(req, res) {
         validador.email =
         {
           value: item.email,
-          validatios: ''
+          validation: ''
         }
       }
 
     }
+    console.log(validador)
   }
-  console.log(validador)
-  
+
+
 }
 
 
