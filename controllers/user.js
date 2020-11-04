@@ -1,7 +1,6 @@
 const { User } = require('../db');
 const { Role } = require('../db');
 const XLSX = require('xlsx');
-const { check, validationResult } = require('express-validator/check');
 
 //metodos de prueba
 function home(request, response) {
@@ -35,21 +34,64 @@ async function getUser(req, res) {
   res.status(200).send(users)
 }
 
-function importFromExcel(req, res) {
+async function importFromExcel(req, res) {
+
+  const exist_roles = []
+  const roles = await Role.findAll()
+  for (role of roles) {
+    exist_roles.push(role.name)
+  }
+
+
   if (req.files) {
     const file_path = req.files.excel.path;
     const workbook = XLSX.readFile(file_path);
     const sheet = workbook.SheetNames[0];
     const dataExcel = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
-    
-    for(const item of dataExcel){
-      
-      /*console.log(item.code)
-      item.name
-      item.email
-      */
+
+    const validador = {}
+    for (const item of dataExcel) {
+      if (exist_roles.includes(item.code)) {
+        //pasa
+      } else {
+        // no pasa
+        validador.role =
+        {
+          value: item.code,
+          validatios: ''
+        }
+
+      }
+      //nombre mas de 50
+      if (item.name.length > 50) {
+        //no pasa
+      } else {
+        validador.name =
+        {
+          value: item.name,
+          validatios: ''
+        }
+      }
+      const exist_email = await User.findAll({
+        where: {
+          email:
+            item.email
+        }
+      })
+      if (Object.keys(exist_email).length) {
+        //console.log(exist_email[0].email)
+      } else {
+        validador.email =
+        {
+          value: item.email,
+          validatios: ''
+        }
+      }
+
     }
   }
+  console.log(validador)
+  
 }
 
 
